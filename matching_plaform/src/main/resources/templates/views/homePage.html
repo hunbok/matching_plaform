@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/main_layout}">
+
+<th:block layout:fragment="content">
+	<div class="row my-5" id="global-content">
+		<div class="col-10 offset-1">
+			<div class="row text-center">
+				<div class="col">
+					<h2 class="fs-3 fw-bold" th:text="#{plaform.home.title}">coo
+						KINGx2</h2>
+				</div>
+			</div>
+			<nav>
+				<div class="nav nav-tabs" id="nav-tab" role="tablist">
+					<button class="nav-link active" id="nav-home-tab"
+						data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+						role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
+					<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+						data-bs-target="#nav-profile" type="button" role="tab"
+						aria-controls="nav-profile" aria-selected="false">Profile</button>
+					<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
+						data-bs-target="#nav-contact" type="button" role="tab"
+						aria-controls="nav-contact" aria-selected="false">Contact</button>
+
+				</div>
+			</nav>
+		</div>
+	</div>
+</th:block>
+</html>
