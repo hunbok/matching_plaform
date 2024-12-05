@@ -5,9 +5,15 @@
 <mapper namespace="com.matching.plaform.mapper.BoardMapper">
 	<select id="BoardList" resultType="Board">
 		SELECT
-		* 
-		FROM
-		Board
+		c.* 
+		FROM Board b
+		JOIN
+		category c
+		ON 
+		b.categoryCode = c.categoryCode
+		WHERE
+		b.categoryCode = #{categoryCode}
+		ORDER BY no DESC
 	</select>
 
 </mapper>

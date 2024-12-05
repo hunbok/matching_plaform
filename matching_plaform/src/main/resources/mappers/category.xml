@@ -4,7 +4,7 @@
 <mapper namespace="com.matching.plaform.mapper.CategoryMapper">
 	<select id="CategoryList" resultType="Category">
 	SELECT 
-	  * 
+	*
 	FROM
 	category
 	</select>

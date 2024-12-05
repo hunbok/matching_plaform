@@ -12,20 +12,40 @@
 						KINGx2</h2>
 				</div>
 			</div>
-			<nav>
-				<div class="nav nav-tabs" id="nav-tab" role="tablist">
-					<button class="nav-link active" id="nav-home-tab"
-						data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
-						role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-					<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-						data-bs-target="#nav-profile" type="button" role="tab"
-						aria-controls="nav-profile" aria-selected="false">Profile</button>
-					<button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab"
-						data-bs-target="#nav-contact" type="button" role="tab"
-						aria-controls="nav-contact" aria-selected="false">Contact</button>
-
+			<div class="row">
+				<div class="col text-end">
+					<a class="btn btn-outline-success">글 작성</a>
 				</div>
-			</nav>
+			</div>
+			<div class="row my-3">
+				<div class="col">
+					<table class="table">
+						<thead>
+							<tr class="table-dark">
+								<th>no</th>
+								<th>제목</th>
+								<th>작성자</th>
+								<th>작성일</th>
+								<th>조회수</th>
+						</thead>
+						<tbody>
+							<th:block th:if="${not #lists.isEmpty(cList)}">
+								<tr th:block th:each="board, status: ${cList}">
+									<td>[[${board.boardNo}]]</td>
+									<td>[[${board.boardTitle}]]</td>
+									<td th:text="${board.memberId}"></td>
+									<td>[[${#dates.format(board.regDate, 'yyyy-MM-dd')}]]</td>
+									<td th:text="${board.boardView}"></td>
+								</tr>
+							</th:block>
+							<th:block th:if="${#lists.isEmpty(cList)}">
+								<tr>
+									<td colspan="5">게시글이 존재하지 않음</td>
+								</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 </th:block>
