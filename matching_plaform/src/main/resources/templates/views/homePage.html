@@ -6,44 +6,45 @@
 <th:block layout:fragment="content">
 	<div class="row my-5" id="global-content">
 		<div class="col-10 offset-1">
-			<div class="row text-center">
-				<div class="col">
-					<h2 class="fs-3 fw-bold" th:text="#{plaform.home.title}">coo
-						KINGx2</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col text-end">
-					<a class="btn btn-outline-success">글 작성</a>
-				</div>
-			</div>
-			<div class="row my-3">
-				<div class="col">
-					<table class="table">
-						<thead>
-							<tr class="table-dark">
-								<th>no</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>조회수</th>
-						</thead>
-						<tbody>
-							<th:block th:if="${not #lists.isEmpty(cList)}">
-								<tr th:block th:each="board, status: ${cList}">
-									<td>[[${board.boardNo}]]</td>
-									<td>[[${board.boardTitle}]]</td>
+			<div>
+				<h1>게시판</h1>
+
+				<!-- 카테고리 탭 -->
+				<ul class="nav nav-tabs" id="nav-tab" role="tablist">
+					<li th:each="category : ${cList}"><span
+						th:text="${category.categoryCode}">Category Code</span> <span
+						th:text="${category.categoryName}">Category Name</span></li>
+				</ul>
+
+				<!-- 게시글 리스트 -->
+				<div class="tab-content" id="nav-tabContent">
+					<div class="tab-pane fade show active" id="nav-home"
+						role="tabpanel" aria-labelledby="nav-home-tab">
+						<table class="table table-striped mt-3">
+							<thead>
+								<tr>
+									<th>번호</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>작성일</th>
+									<th>조회수</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="board : ${bList}">
+									<td th:text="${board.boardNo}"></td>
+									<td th:text="${board.boardTitle}"></td>
 									<td th:text="${board.memberId}"></td>
-									<td>[[${#dates.format(board.regDate, 'yyyy-MM-dd')}]]</td>
+									<td th:text="${#dates.format(board.regDate, 'yyyy-MM-dd')}"></td>
 									<td th:text="${board.boardView}"></td>
 								</tr>
-							</th:block>
-							<th:block th:if="${#lists.isEmpty(cList)}">
-								<tr>
-									<td colspan="5">게시글이 존재하지 않음</td>
+								<!-- 게시글이 없을 경우 -->
+								<tr th:if="${#lists.isEmpty(bList)}">
+									<td colspan="5">게시글이 없습니다.</td>
 								</tr>
-						</tbody>
-					</table>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

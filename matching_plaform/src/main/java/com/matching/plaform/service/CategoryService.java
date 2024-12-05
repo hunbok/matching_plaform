@@ -17,5 +17,9 @@ public class CategoryService {
 	@Autowired
 	private CategoryMapper categoryMapper;
 	
-
+	public List<Category> categoryList(){
+		log.info("categoryService : categoryList()");
+		return categoryMapper.categoryList();
+	}
+	
 }

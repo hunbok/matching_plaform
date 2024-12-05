@@ -9,4 +9,5 @@ import com.matching.plaform.domain.Category;
 @Mapper
 public interface CategoryMapper {
 	
+	List<Category> categoryList();
 }

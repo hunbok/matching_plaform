@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.matching.plaform.mapper.CategoryMapper">
-	<select id="CategoryList" resultType="Category">
+
+	<select id="categoryList" resultType="Category">
 	SELECT 
 	*
 	FROM

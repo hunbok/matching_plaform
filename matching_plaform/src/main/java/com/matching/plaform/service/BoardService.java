@@ -18,7 +18,6 @@ public class BoardService {
 	private BoardMapper boardMapper;
 	
 	public List<Board> boardList(int categoryCode){
-		log.info("boardService : boardList()");
 		return boardMapper.boardList(categoryCode);
 	}
 	

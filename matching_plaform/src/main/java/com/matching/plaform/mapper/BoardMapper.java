@@ -8,6 +8,6 @@ import com.matching.plaform.domain.Board;
 
 @Mapper
 public interface BoardMapper {
-
-	public List<Board> boardList(int categoryCode);
+	
+	List<Board> boardList(int categoryCode);
 }
