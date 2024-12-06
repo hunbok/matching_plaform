@@ -10,16 +10,41 @@
 				<h1>게시판</h1>
 
 				<!-- 카테고리 탭 -->
-				<ul class="nav nav-tabs" id="nav-tab" role="tablist">
-					<li th:each="category : ${cList}"><span
-						th:text="${category.categoryCode}">Category Code</span> <span
-						th:text="${category.categoryName}">Category Name</span></li>
-				</ul>
 
-				<!-- 게시글 리스트 -->
+				<nav>
+					<div class="nav nav-tabs" id="nav-tab" role="tablist">
+						<button class="nav-link" id="nav-All-tab" data-bs-toggle="tab"
+							data-bs-target="#nav-All" type="button" role="tab"
+							aria-controls="nav-All" aria-selected="true"
+							th:classappend="${categoryCode == 3 ? ' active' : ''}"
+							onclick="location.href='/homePage?categoryCode=3'">전체
+							레시피</button>
+
+						<button class="nav-link" id="nav-Popular-tab" data-bs-toggle="tab"
+							data-bs-target="#nav-Popular" type="button" role="tab"
+							aria-controls="nav-Popular" aria-selected="false"
+							th:classappend="${categoryCode == 2 ? ' active' : ''}"
+							onclick="location.href='/homePage?categoryCode=2'">인기
+							레시피</button>
+
+						<button class="nav-link" id="nav-tip-tab" data-bs-toggle="tab"
+							data-bs-target="#nav-tip" type="button" role="tab"
+							aria-controls="nav-tip" aria-selected="false"
+							th:classappend="${categoryCode == 4 ? ' active' : ''}"
+							onclick="location.href='/homePage?categoryCode=4'">꿀 팁</button>
+
+						<button class="nav-link" id="nav-notice-tab" data-bs-toggle="tab"
+							data-bs-target="#nav-notice" type="button" role="tab"
+							aria-controls="nav-notice" aria-selected="false"
+							th:classappend="${categoryCode == 1 ? ' active' : ''}"
+							onclick="location.href='/homePage?categoryCode=1'">공지 사항</button>
+					</div>
+				</nav>
+
+
 				<div class="tab-content" id="nav-tabContent">
 					<div class="tab-pane fade show active" id="nav-home"
-						role="tabpanel" aria-labelledby="nav-home-tab">
+						role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
 						<table class="table table-striped mt-3">
 							<thead>
 								<tr>
@@ -44,6 +69,19 @@
 								</tr>
 							</tbody>
 						</table>
+					</div>
+
+
+					<!-- <ul class="nav nav-tabs" id="nav-tab" role="tablist">
+					<li th:each="category : ${cList}">
+					<span th:text="${category.categoryName}">Category Name</span>
+					</li>
+				</ul> -->
+
+					<!-- 게시글 리스트 -->
+					<div class="tab-content" id="nav-tabContent">
+						<div class="tab-pane fade show active" id="nav-home"
+							role="tabpanel" aria-labelledby="nav-home-tab"></div>
 					</div>
 				</div>
 			</div>

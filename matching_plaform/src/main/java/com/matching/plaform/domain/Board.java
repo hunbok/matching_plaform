@@ -13,15 +13,16 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Board {
 	
-	private int board_no;
-	private String board_title;
-	private String board_content;
-	private Timestamp reg_date;
-	private int board_view;
-	private int category_code;
-	private String member_id;
-	private String board_file1;
-	private int board_like;
-	private int board_dislike;
+	private int boardNo;
+	private String boardTitle;
+	private String boardContent;
+	private Timestamp regDate;
+	private int boardView;
+	private int categoryCode;
+	private String categoryName;
+	private String memberId;
+	private String boardFile1;
+	private int boardLike;
+	private int boardDislike;
 	
 }

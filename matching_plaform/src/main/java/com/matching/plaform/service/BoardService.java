@@ -17,8 +17,8 @@ public class BoardService {
 	@Autowired
 	private BoardMapper boardMapper;
 	
-	public List<Board> boardList(int categoryCode){
-		return boardMapper.boardList(categoryCode);
+	public List<Board> boardbyCategory(int categoryCode){
+		return boardMapper.boardbyCategory(categoryCode);
 	}
 	
 }

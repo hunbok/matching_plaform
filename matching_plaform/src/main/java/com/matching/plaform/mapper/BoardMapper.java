@@ -9,5 +9,5 @@ import com.matching.plaform.domain.Board;
 @Mapper
 public interface BoardMapper {
 	
-	List<Board> boardList(int categoryCode);
+	List<Board> boardbyCategory(int categoryCode);
 }

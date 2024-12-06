@@ -3,10 +3,12 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="com.matching.plaform.mapper.BoardMapper">
-	<select id="boardList" resultType="Board">
-		SELECT * FROM board
-		WHERE category_code =#{categoryCode}
+	
+	<select id="boardbyCategory" resultType="Board">
+		SELECT * FROM board b
+		JOIN category c
+		ON b.category_code = c.category_code
+		WHERE b.category_code =#{categoryCode}
 		ORDER BY board_no DESC
 	</select>
-
 </mapper>
