@@ -56,7 +56,7 @@ public class MemberController {
 		model.addAttribute("member", member);
 		System.out.println("member.name : " + member.getName());
 		
-		return "redirect:/boardList";
+		return "redirect:/homePage";
 	}
 	
 	@GetMapping("/memberLogout")
@@ -64,7 +64,7 @@ public class MemberController {
 
 	session.invalidate();
 
-	return "redirect:/loginForm";
+	return "redirect:/loginView";
 	}
 	
 	@RequestMapping("/DuplicateCheck")

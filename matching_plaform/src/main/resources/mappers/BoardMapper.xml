@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
+
 <mapper namespace="com.matching.plaform.mapper.BoardMapper">
-	
+
+	<!-- BoardMapper.xml -->
+
+	<!-- 카테고리와 게시글을 함께 가져오는 쿼리 -->
 	<select id="boardbyCategory" resultType="Board">
-		SELECT * FROM board b
-		JOIN category c
-		ON b.category_code = c.category_code
-		WHERE b.category_code =#{categoryCode}
-		ORDER BY board_no DESC
+    SELECT * FROM board
+    WHERE category_code = #{categoryCode}
+    ORDER BY board_no DESC
 	</select>
-	
+
+
+
 	<select id="getDetail" resultType="Board">
 		SELECT * FROM
 		board
-		WHERE board_no = #{boardNo}
+		WHERE
+		board_no = #{boardNo}
 	</select>
-	
+
 	<insert id="writeBoard" parameterType="Board"
-	useGeneratedKeys="true" keyProperty="boardNo">
-		INSERT INTO board(board_title, board_content, board_reg_date, board_view, category_code,
-		member_id, board_file1)
-		
-		VALUES(#{boardTitle}, #{boardContent}, NOW(), #{boardView}, #{categoryCode}, #{memberId}, #{boardFile1})
+		useGeneratedKeys="true" keyProperty="boardNo">
+		INSERT INTO board(board_title, board_content, 
+		board_reg_date, board_view, category_code,
+		category_name, member_id, board_file1)
+
+		VALUES(#{boardTitle},
+		#{boardContent}, NOW(), #{boardView}, #{categoryCode},
+		#{categoryName}, #{memberId}, #{boardFile1})
 	</insert>
+
 </mapper>

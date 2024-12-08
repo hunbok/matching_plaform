@@ -4,16 +4,14 @@
 	
 <mapper namespace="com.matching.plaform.mapper.ReplyMapper">
 	<select id="ReplyList" resultType="Reply">
-		SELECT 
-		reply_no AS replyNO,
-		board_no AS boardNo,
+		SELECT
 		reply_content AS replyContent,
 		member_id AS memberId,
 		reply_reg_date AS replyRegDate,
-		reply_like AS replyLike,
-		reply_dislike AS replyDislike
-		FROM reply
-		WHERE board_no =#{no}
-			ORDER BY no DESC
+		reply_like AS ReplyLike,
+		reply_dislike AS ReplyDisLike
+		FROM Reply
+		WHERE board_no=#{boardNo}
+		ORDER BY reply_no DESC
 	</select>
 </mapper>

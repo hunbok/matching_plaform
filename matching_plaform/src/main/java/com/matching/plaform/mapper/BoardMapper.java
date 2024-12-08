@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.matching.plaform.domain.Board;
+import com.matching.plaform.domain.Reply;
 
 @Mapper
 public interface BoardMapper {
@@ -14,4 +15,7 @@ public interface BoardMapper {
 	Board getDetail(int boardNo);
 	
 	void writeBoard(Board board);
+	
+	
+	
 }

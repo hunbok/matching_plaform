@@ -33,6 +33,7 @@ public class MemberService {
 		return revalue;		
 	}
 	public Member getMember(String id) {
+		log.info("MamberMapper:" + memberMapper.getMember(id));
 		return memberMapper.getMember(id);
 	}
 }

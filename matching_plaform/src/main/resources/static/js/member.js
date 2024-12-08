@@ -1,4 +1,3 @@
-// DOM이 준비되면 실행될 콜백 함수
 $(function() {
 	
 	// 회원 로그인 폼이 submit 될 때 폼 유효성 검사를 위한 이벤트 처리
@@ -241,8 +240,8 @@ function joinFormCheck() {
 	var pass2 = $("#pass2").val();
 	var zipcode = $("#zipcode").val();
 	var address1 = $("#address1").val();
-	var emailId = $("#email").val();
-	var emailDomain = $("#emailGet").val();
+	var emailId = $("#emailId").val();
+	var emailDomain = $("#emailDomain").val();
 	var mobile2 = $("#mobile2").val();
 	var mobile3 = $("#mobile2").val();
 	var isIdCheck = $("#isIdCheck").val();

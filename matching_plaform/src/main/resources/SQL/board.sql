@@ -2,6 +2,7 @@
 SHOW DATABASES;
 
 SHOW tables;
+CREATE DATABASE category;
 
 USE category;
 USE member;
@@ -15,7 +16,10 @@ category_code INTEGER AUTO_INCREMENT PRIMARY KEY,
 category_name VARCHAR(10) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO category(category_name) VALUES ('공지사항');
+INSERT INTO category(category_code, category_name) VALUES (1, '전체 게시글');
+INSERT INTO category(category_code, category_name) VALUES (2, '인기 레시피');
+INSERT INTO category(category_code, category_name) VALUES (3, '꿀팁 게시글');
+INSERT INTO category(category_code, category_name) VALUES (4, '공지사항');
 
 -- 회원
 DROP TABLE IF EXISTS member;
@@ -50,6 +54,7 @@ board_reg_date TIMESTAMP NOT NULL,
 board_view INTEGER NOT NULL,
 category_code INTEGER NOT NULL,
 member_id VARCHAR(20) NOT NULL,
+category_name VARCHAR(10) NOT NULL,
 board_file1 VARCHAR(100),
 board_like INTEGER DEFAULT 0,
 board_dislike INTEGER DEFAULT 0,
@@ -57,9 +62,14 @@ CONSTRAINT member_id_fk FOREIGN KEY (member_id) REFERENCES member(id),
 CONSTRAINT category_code_fk FOREIGN KEY (category_code) REFERENCES category(category_code)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO board(board_title, board_content, board_reg_date, board_view, category_code, member_id, board_file1)
-VALUES('공지 사항 입니다.', '안녕하세요\r\n이번에 어쩌구 저쩌구 해서리...\r\n\r\n\r\r\n\n이렇게 운영계획과 약관을 바꾸게 되었습니다.\r\n\r\n회원님들의 양해를 구하며 사이트 이용해 참고 하시기 바랍니다.\r\n\r\n','2022-12-22 11:44:58', 102, 1, 'bokbok', null);
-
+INSERT INTO board(category_name, board_title, board_content, board_reg_date, board_view, category_code, member_id, board_file1)
+VALUES('공지사항', '공지 사항 입니다.', '안녕하세요\r\n이번에 어쩌구 저쩌구 해서리...\r\n\r\n\r\r\n\n이렇게 운영계획과 약관을 바꾸게 되었습니다.\r\n\r\n회원님들의 양해를 구하며 사이트 이용해 참고 하시기 바랍니다.\r\n\r\n','2022-12-22 11:44:58', 102, 4, 'bokbok', null);
+INSERT INTO board(category_name, board_title, board_content, board_reg_date, board_view, category_code, member_id, board_file1)
+VALUES('인기 레시피', '인기 레시피 입니다.', '안녕하세요\r\n이번에 어쩌구 저쩌구 해서리...\r\n\r\n\r\r\n\n이렇게 운영계획과 약관을 바꾸게 되었습니다.\r\n\r\n회원님들의 양해를 구하며 사이트 이용해 참고 하시기 바랍니다.\r\n\r\n','2022-12-22 11:44:58', 102, 2, 'bokbok', null);
+INSERT INTO board(category_name, board_title, board_content, board_reg_date, board_view, category_code, member_id, board_file1)
+VALUES('전체 레시피', '전체 레시피 입니다.', '안녕하세요\r\n이번에 어쩌구 저쩌구 해서리...\r\n\r\n\r\r\n\n이렇게 운영계획과 약관을 바꾸게 되었습니다.\r\n\r\n회원님들의 양해를 구하며 사이트 이용해 참고 하시기 바랍니다.\r\n\r\n','2022-12-22 11:44:58', 102, 1, 'bokbok', null);
+INSERT INTO board(category_name, board_title, board_content, board_reg_date, board_view, category_code, member_id, board_file1)
+VALUES('꿀 팁', '꿀팁 게시판 입니다.', '안녕하세요\r\n이번에 어쩌구 저쩌구 해서리...\r\n\r\n\r\r\n\n이렇게 운영계획과 약관을 바꾸게 되었습니다.\r\n\r\n회원님들의 양해를 구하며 사이트 이용해 참고 하시기 바랍니다.\r\n\r\n','2022-12-22 11:44:58', 102, 3, 'bokbok', null);
 -- 댓글
 DROP TABLE IF EXISTS reply;
 CREATE TABLE IF NOT EXISTS reply(
@@ -77,5 +87,8 @@ CREATE TABLE IF NOT EXISTS reply(
 INSERT INTO reply(board_no, reply_content, member_id, reply_reg_date) 
 VALUES(1, '고생하십니다.', 'midas', '2022-12-23 11:44:58');
 
+SELECT * FROM reply;
 SELECT * FROM category ORDER BY category_code DESC;
 SELECT * FROM board ORDER BY board_no DESC;
+
+
