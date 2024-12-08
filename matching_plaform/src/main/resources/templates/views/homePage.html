@@ -6,9 +6,12 @@
 <th:block layout:fragment="content">
 	<div class="row my-5" id="global-content">
 		<div class="col-10 offset-1">
-			<div>
-				<h1>게시판</h1>
-
+			<div class="row">
+				<div class="col-4"><h1>게시판</h1></div>
+				<div class="col d-flex justify-content-end">
+				<a th:href="@{writeBoard}" class="btn btn-secondary d-flex align-items-center">글 쓰기</a>
+				</div>
+			
 				<!-- 카테고리 탭 -->
 
 				<nav>
@@ -58,9 +61,9 @@
 							<tbody>
 								<tr th:each="board : ${bList}">
 									<td th:text="${board.boardNo}"></td>
-									<td th:text="${board.boardTitle}"></td>
+									<td><a class="text-decoration-none text-dark" th:href="@{detailView(boardNo=${board.boardNo})}">[[${board.boardTitle}]]</a></td>
 									<td th:text="${board.memberId}"></td>
-									<td th:text="${#dates.format(board.regDate, 'yyyy-MM-dd')}"></td>
+									<td th:text="${#dates.format(board.boardRegDate, 'yyyy-MM-dd')}"></td>
 									<td th:text="${board.boardView}"></td>
 								</tr>
 								<!-- 게시글이 없을 경우 -->

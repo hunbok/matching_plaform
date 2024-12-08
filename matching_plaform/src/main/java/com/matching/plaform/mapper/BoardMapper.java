@@ -10,4 +10,8 @@ import com.matching.plaform.domain.Board;
 public interface BoardMapper {
 	
 	List<Board> boardbyCategory(int categoryCode);
+	
+	Board getDetail(int boardNo);
+	
+	void writeBoard(Board board);
 }

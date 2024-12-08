@@ -21,4 +21,11 @@ public class BoardService {
 		return boardMapper.boardbyCategory(categoryCode);
 	}
 	
+	public Board getDetail(int boardNo) {
+		return boardMapper.getDetail(boardNo);
+	}
+	
+	public void writeBoard(Board board) {
+		boardMapper.writeBoard(board);
+	}
 }

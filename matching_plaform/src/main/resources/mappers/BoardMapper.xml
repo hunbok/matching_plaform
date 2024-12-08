@@ -11,4 +11,18 @@
 		WHERE b.category_code =#{categoryCode}
 		ORDER BY board_no DESC
 	</select>
+	
+	<select id="getDetail" resultType="Board">
+		SELECT * FROM
+		board
+		WHERE board_no = #{boardNo}
+	</select>
+	
+	<insert id="writeBoard" parameterType="Board"
+	useGeneratedKeys="true" keyProperty="boardNo">
+		INSERT INTO board(board_title, board_content, board_reg_date, board_view, category_code,
+		member_id, board_file1)
+		
+		VALUES(#{boardTitle}, #{boardContent}, NOW(), #{boardView}, #{categoryCode}, #{memberId}, #{boardFile1})
+	</insert>
 </mapper>
