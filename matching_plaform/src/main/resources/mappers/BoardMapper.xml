@@ -7,19 +7,27 @@
 	<!-- BoardMapper.xml -->
 
 	<!-- 카테고리와 게시글을 함께 가져오는 쿼리 -->
+
 	<select id="boardbyCategory" resultType="Board">
-    SELECT * FROM board
-    WHERE category_code = #{categoryCode}
-    ORDER BY board_no DESC
+		SELECT b.board_no, b.board_title, b.board_content, b.board_reg_date,
+		b.board_view,
+		b.category_code, b.member_id, b.board_file1, c.category_name
+		FROM board b
+		JOIN category c ON b.category_code = c.category_code
+		WHERE b.category_code = #{categoryCode}
+		ORDER BY b.board_no DESC
 	</select>
 
+
+	<!-- <select id="boardbyCategory" resultType="Board"> SELECT * FROM board 
+		WHERE category_code = #{categoryCode} ORDER BY board_no DESC </select> -->
 	<update id="updateBoard" parameterType="Board">
 		UPDATE board
-		SET board_title = #{boardTitle},
+		SET
+		board_title = #{boardTitle},
 		board_content = #{boardContent},
 		board_reg_date = NOW(),
-		category_code = #{categoryCode},
-		category_name = #{categoryName}
+		category_code = #{categoryCode}
 		WHERE board_no = #{boardNo}
 	</update>
 
@@ -32,18 +40,17 @@
 
 	<insert id="writeBoard" parameterType="Board"
 		useGeneratedKeys="true" keyProperty="boardNo">
-		INSERT INTO board(board_title, board_content, 
-		board_reg_date, board_view, category_code,
-		category_name, member_id, board_file1)
+		INSERT INTO board(board_title,
+		board_content,
+		board_reg_date, board_view, category_code, member_id, board_file1)
 
 		VALUES(#{boardTitle},
-		#{boardContent}, NOW(), #{boardView}, #{categoryCode},
-		#{categoryName}, #{memberId}, #{boardFile1})
+		#{boardContent}, NOW(), #{boardView},#{categoryCode}, #{memberId}, #{boardFile1})
 	</insert>
-	
+
 	<delete id="deleteBoard">
-	DELETE FROM board
-	WHERE board_no = #{boardNo}
+		DELETE FROM board
+		WHERE board_no = #{boardNo}
 	</delete>
 
 </mapper>

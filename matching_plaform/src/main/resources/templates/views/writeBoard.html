@@ -12,22 +12,26 @@
 				</div>
 			</div>
 			<form action="/writeBoard" method="post">
-				<input type="hidden" name="categoryCode" th:value="${board.categoryCode}">
-				<input type="hidden" name="categoryName" th:value="${board.categoryName}">
+				<input type="hidden" name="categoryCode"
+					th:value="${board.categoryCode}"> <input type="hidden"
+					name="categoryName" th:value="${board.categoryName}">
 
 				<div class="col-8 offset-md-2">
 					<label for="categoryCode" class="form-label">카테고리 선택</label> <select
-						name="categoryCode" id="categoryCode" class="form-select">
-						<option value="1">전체 게시글</option>
-						<option value="3">꿀 팁</option>
-						<option value="4">공지사항</option>
+						id="categorySelect" class="form-select">
+						<option value="1" th:selected="${board.categoryCode == 1}">전체
+							게시글</option>
+						<option value="3" th:selected="${board.categoryCode == 3}">꿀
+							팁</option>
+						<option value="4" th:selected="${board.categoryCode == 4}">공지사항</option>
 					</select>
 				</div>
 
 				<div class="col-4 offset-md-2">
 					<label for="memberId" class="form-label">글쓴이</label> <input
-						type="text" class="form-control text-secondary" name="memberId" id="memberId"
-						th:value="${board.memberId}" placeholder="작성자를 입력해 주세요" readonly />
+						type="text" class="form-control text-secondary" name="memberId"
+						id="memberId" th:value="${board.memberId}"
+						placeholder="작성자를 입력해 주세요" readonly />
 				</div>
 				<div class="col-8 offset-md-2">
 					<label for="boardTitle" class="form-label">제 목</label> <input
@@ -39,7 +43,6 @@
 						id="boardContent" rows="10"></textarea>
 				</div>
 
-				<!-- 제출 버튼 -->
 				<div class="col-8 offset-md-2 text-center mt-5">
 					<input type="submit" value="등록하기" class="btn btn-primary" />
 					&nbsp;&nbsp;<input type="button" value="목록보기"
