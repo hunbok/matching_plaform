@@ -23,10 +23,19 @@ public class BoardService {
 	}
 
 	public Board getDetail(int boardNo) {
+		log.info("boardService: getDetail(int boardNo)");
 		return boardMapper.getDetail(boardNo);
 	}
 
 	public void writeBoard(Board board) {
 		boardMapper.writeBoard(board);
+	}
+	
+	public void updateBoard(Board board) {
+		boardMapper.updateBoard(board);
+	}
+	
+	public void deleteBoard(int boardNo) {
+		boardMapper.deleteBoard(boardNo);
 	}
 }

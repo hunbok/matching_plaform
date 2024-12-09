@@ -7,11 +7,13 @@
 	<div class="row my-5" id="global-content">
 		<div class="col-10 offset-1">
 			<form name="checkForm" id="checkForm">
-				<input type="hidden" name="no" id="no" th:value="${board.boardNo}" />
+				<input type="hidden" name="boardNo" id="boardNo" th:value="${board.boardNo}" />
+				<input type="hidden" name="categoryCode" id="categoryCode" th:value="${board.categoryCode}">
+				<input type="hidden" name="categoryName" id="categoryName" th:value="${board.categoryName}">
 			</form>
 			<div class="row text-center">
 				<div class="col">
-					<a class="fs-3 fw-bold text-decoration-none text-dark" th:href="@{homePage(categoryCode=${board.categoryCode})}" th:text="${board.categoryName}">카테고리입니다</a>
+					<a class="fs-3 fw-bold text-decoration-none text-dark" th:href="@{homePage(categoryCode=${board.categoryCode})}" th:text="${board.categoryName}"></a>
 
 				</div>
 			</div>
@@ -53,7 +55,7 @@
 			<div class="row my-3">
 				<div class="col text-center">
 					<input class="btn btn-outline-secondary" type="button"
-						id="detailUpdate" value="수정하기" /> &nbsp;&nbsp;<input
+						id="detailUpdate" value="수정하기"/> &nbsp;&nbsp;<input
 						class="btn btn-outline-secondary" type="button" id="detailDelete"
 						value="삭제하기" /> &nbsp;&nbsp;<input
 						class="btn btn-outline-secondary" type="button" value="목록보기"
@@ -64,13 +66,13 @@
 				<div class="col border p-3">
 					<div id="like" class="text-end">
 						<span id="replyLike" class="btnCommend text-secondary"
-							style="cursor: pointer;"> <i class="bi bi-cart-check-fill"></i>좋아요
+							style="cursor: pointer;"> <i class="bi bi-emoji-laughing-fill"></i>&nbsp;좋아요
 							<span class="recommend" th:text="|(${board.replyLike})|"></span>
 						</span> | <span id="disLike" class="btnCommend text-secondary"
-							style="cursor: pointer;"> <i class="bi bi-cart-check-fill"></i>싫어요
+							style="cursor: pointer;"> <i class="bi bi-emoji-angry-fill"></i>&nbsp;싫어요
 							<span class="recommend" th:text="|(${board.replyDisLike})|"></span>
 						</span> | <span id="replyCtn" class="btnCommend text-secondary"
-							style="cursor: pointer;"> <i class="bi bi-cart-check-fill"></i>댓글쓰기
+							style="cursor: pointer;"> <i class="bi bi-chat-right-dots-fill"></i>&nbsp;댓글쓰기
 						</span>
 					</div>
 				</div>

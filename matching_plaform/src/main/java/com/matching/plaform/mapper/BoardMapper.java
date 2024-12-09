@@ -16,6 +16,7 @@ public interface BoardMapper {
 	
 	void writeBoard(Board board);
 	
+	void updateBoard(Board board);
 	
-	
+	void deleteBoard(int boardNo);
 }
