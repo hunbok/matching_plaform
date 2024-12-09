@@ -22,7 +22,7 @@ public class Board {
 	private String categoryName;
 	private String memberId;
 	private String boardFile1;
-	private int replyLike;
-	private int replyDisLike;
+	private int boardLike;
+	private int boardDisLike;
 	
 }

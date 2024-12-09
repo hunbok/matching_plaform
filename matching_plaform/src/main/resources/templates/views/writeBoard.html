@@ -17,12 +17,12 @@
 					name="categoryName" th:value="${board.categoryName}">
 
 				<div class="col-8 offset-md-2">
-					<label for="categoryCode" class="form-label">카테고리 선택</label> <select
-						id="categorySelect" class="form-select">
-						<option value="1" th:selected="${board.categoryCode == 1}">전체
-							게시글</option>
-						<option value="3" th:selected="${board.categoryCode == 3}">꿀
-							팁</option>
+					<label for="categoryCode" class="form-label" >카테고리 선택</label> 
+					<select
+						id="categorySelect" class="form-select" name="categoryCode">
+						<option value="1" th:selected="${board.categoryCode == 1}">전체	레시피</option>		
+						<option value="2" th:selected="${board.categoryCode == 1}" class="d-none">인기 레시피</option>							
+						<option value="3" th:selected="${board.categoryCode == 3}">꿀팁 레시피</option>
 						<option value="4" th:selected="${board.categoryCode == 4}">공지사항</option>
 					</select>
 				</div>
