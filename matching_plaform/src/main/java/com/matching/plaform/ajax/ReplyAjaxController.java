@@ -17,10 +17,10 @@ public class ReplyAjaxController {
     @Autowired
     private BoardService boardService;
 
-    @PostMapping("/updateEmpathy.ajax")
-    public Map<String, Integer> updateEmpathy(@RequestParam("boardNo") int boardNo, 
+    @PostMapping("/empathy.ajax")
+    public Map<String, Integer> empathy(@RequestParam("boardNo") int boardNo, 
                                               @RequestParam("empathy") String empathy) {
-        return boardService.updateEmpathy(boardNo, empathy);
+        return boardService.empathy(boardNo, empathy);
     }
 
     @PostMapping("/replyWrite.ajax")
@@ -28,20 +28,20 @@ public class ReplyAjaxController {
                                   @RequestParam int boardNo, 
                                   @RequestParam String memberId) {
         boardService.saveReply(replyContent, boardNo, memberId);
-        return boardService.getReplies(boardNo);
+        return boardService.replyList(boardNo);
     }
 
     @PostMapping("/modifyReply.ajax")
     public List<Reply> modifyReply(@RequestParam int replyNo, 
                                    @RequestParam String replyContent) {
         boardService.modifyReply(replyNo, replyContent);
-        return boardService.getReplies(replyNo);
+        return boardService.replyList(replyNo);
     }
 
     @PostMapping("/deleteReply.ajax")
     public List<Reply> deleteReply(@RequestParam int replyNo) {
         boardService.deleteReply(replyNo);
-        return boardService.getReplies(replyNo);
+        return boardService.replyList(replyNo);
     }
 }
 

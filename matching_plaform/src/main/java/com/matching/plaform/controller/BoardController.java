@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.matching.plaform.domain.Board;
+import com.matching.plaform.domain.Reply;
 import com.matching.plaform.service.BoardService;
 
 import jakarta.servlet.http.HttpSession;
@@ -41,9 +42,11 @@ public class BoardController {
 	   @GetMapping("/detailView")
 	    public String getDetail(Model model, @RequestParam("boardNo") int boardNo) {
 	        Board board = boardService.getDetail(boardNo);
-	        Map<String, Integer> empathy = boardService.getEmpathy(boardNo);
-	        model.addAttribute("empathy", empathy);
+	        
 	        model.addAttribute("board", board);
+	        
+	        List<Reply> replyList = boardService.replyList(boardNo);
+	        model.addAttribute("rList", replyList);
 	        return "views/detailView";
 	    }
 	

@@ -10,7 +10,6 @@
 			<form name="checkForm" id="checkForm">
 				<input type="hidden" name="boardNo" id="boardNo" th:value="${board.boardNo}" />
 				<input type="hidden" name="categoryCode" id="categoryCode" th:value="${board.categoryCode}">
-				<input type="hidden" name="categoryName" id="categoryName" th:value="${board.categoryName}">
 			</form>
 			<div class="row text-center">
 				<div class="col">
@@ -28,7 +27,9 @@
 							</tr>
 							<tr>
 								<th>글쓴이</th>
-								<td th:text="${board.MemberId}"></td>
+	
+								<td th:text="${session.Member != null and session.Member.id != null ? session.Member.id : '비회원'}"></td>
+	
 								<th>작성일</th>
 								<td>[[${ #dates.format(board.boardRegDate, 'yyyy-MM-dd HH:mm:ss') }]]</td>
 							</tr>
@@ -63,28 +64,22 @@
 				</div>
 			</div>
 
-			<!-- 추천/비추/댓글 -->
-			<form id="replyWriteForm_${board.boardNo}_${reply.replyNo}">
-			    <input type="hidden" name="boardNo" value="${board.boardNo}" />
-			    <input type="hidden" name="memberId" value="${board.memberId}" />
-			    <textarea name="replyContent" id="replyContent_${board.boardNo}_${reply.replyNo}" class="form-control" rows="4"></textarea>
-			    <button type="submit" id="replyWriteButton_${board.boardNo}_${reply.replyNo}" class="btn btn-primary">댓글쓰기</button>
-			</form>
-
-
 			<div class="row my-5">
 				<div class="col border p-3">
 					<div id="empathy" class="text-end">
 						<span id="replyLike" class="btnReply text-secondary"
-							style="cursor: pointer;" data-board-no="${board.boardNo}">
+							style="cursor: pointer;">
 							<i class="bi bi-emoji-laughing-fill"></i>&nbsp;좋아요 <span
-							class="recommend" th:text="${board.boardLike}"></span>
-						</span> | <span id="replyDisLike" class="btnReply text-secondary"
-							style="cursor: pointer;" data-board-no="${board.boardNo}">
+							class="empathy" th:text="|(${board.boardLike})|"></span>
+						</span> | 
+						
+						<span id="replyDisLike" class="btnReply text-secondary"
+							style="cursor: pointer;">
 							<i class="bi bi-emoji-angry-fill"></i>&nbsp;싫어요 <span
-							class="recommend" th:text="${board.boardDisLike}"></span>
-						</span> | <span id="replyCtn" class="btnReply text-secondary"
-							style="cursor: pointer;" data-board-no="${board.boardNo}">
+							class="empathy" th:text="|(${board.boardDisLike})|"></span>
+						</span> | 
+						
+						<span id="replyWrite" class="text-secondary" style="cursor: pointer;">
 							<i class="bi bi-chat-right-dots-fill"></i>&nbsp;댓글쓰기
 						</span>
 					</div>
@@ -103,19 +98,20 @@
 							<div class="row bg-light p-2">
 								<div class="col-4">
 									<span th:text="${reply.memberId}">댓글 작성자</span>
+
 								</div>
 								<div class="col-8 text-end">
 									<span class="me-3">[[${ #dates.format(reply.regDate, 'yyyy-MM-dd HH:mm:ss') }]]</span>
 									<button class="modifyReply btn btn-outline-success btn-sm"
-										id="modifyReply_${reply.replyNo}" th:data-no="${reply.replyNo}">
+										id="modifyReply" th:data-no="${reply.replyNo}">
 										<i class="bi bi-journal-text">수정</i>
 									</button>
 									<button class="deleteReply btn btn-outline-warning btn-sm"
-										id="deleteReply_${reply.replyNo}" th:data-no="${reply.replyNo}">
+										id="deleteReply" th:data-no="${reply.replyNo}">
 										<i class="bi bi-trash">삭제</i>
 									</button>
 									<button class="btn btn-outline-danger btn-sm"
-										id="reportReply_${reply.replyNo}" th:onclick="reportReply('${reply.replyNo}')">
+										id="reportReply" th:onclick="reportReply('${reply.replyNo}')">
 										<i class="bi bi-telephone-outbound">신고</i>
 									</button>
 								</div>
@@ -139,11 +135,11 @@
 			</div>
 
 			<!-- 댓글 쓰기 폼 -->
-			<div class="row my-3 d-none" id="replyForm_${board.boardNo}">
+			<div class="row my-3 d-none" id="replyForm">
 				<div class="col">
-					<form name="replyWriteForm_${board.boardNo}" id="replyWriteForm_${board.boardNo}">
-						<input type="hidden" name="replyNo" th:value="${board.boardNo}" />
-						<input type="hidden" name="memberId" th:value="${board.memberId}" />
+					<form name="replyWriteForm" id="replyWriteForm">
+						<input type="hidden" name="boardNo" th:value="${board.boardNo}"/>
+						<input type="hidden" name="memberId" th:value="${session.member.id}" />
 						<div class="row bg-light my-3 p-3 border">
 							<div class="col">
 								<div class="row">
@@ -153,12 +149,12 @@
 								</div>
 								<div class="row my-3">
 									<div class="col-md-10">
-										<textarea name="replyContent" id="replyContent_${board.boardNo}"
+										<textarea name="replyContent" id="replyContent"
 											class="form-control" rows="4"></textarea>
 									</div>
 									<div class="col-md">
 										<input type="submit" value="댓글쓰기"
-											class="btn btn-primary h-100 w-100" id="replyWriteButton_${board.boardNo}">
+											class="btn btn-primary h-100 w-100" id="replyWriteButton">
 									</div>
 								</div>
 							</div>

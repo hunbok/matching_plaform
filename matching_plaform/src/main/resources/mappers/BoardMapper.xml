@@ -15,7 +15,7 @@
             b.category_code,
             b.member_id,
             b.board_file1,
-            c.category_name AS categoryName
+            c.category_name
         FROM board b
         JOIN category c ON b.category_code = c.category_code
         WHERE b.category_code = #{categoryCode}
@@ -106,8 +106,8 @@
     
     <select id="getEmpathy" resultType="Board">
     SELECT 
-        board_like AS replyLike,
-        board_dislike AS replyDislike
+        board_like
+        board_dislike
     FROM board
     WHERE board_no = #{boardNo}
 	</select>
@@ -125,14 +125,15 @@
 	</update>
     
     <select id="replyList" resultType="Reply">
-        SELECT 
-            r.reply_no AS replyNo,
-            r.reply_content AS replyContent,
-            r.member_id,
-            r.reply_reg_date AS replyRegDate
-        FROM reply r
-        WHERE r.board_no = #{boardNo}
-        ORDER BY r.reply_reg_date DESC
+		SELECT
+			board_no,
+			reply_no,
+			reply_content,
+			member_id,
+			reply_reg_date
+		FROM reply
+		WHERE board_no = #{boardNo}
+		ORDER BY reply_no DESC
     </select>
 
     <insert id="saveReply" parameterType="map">

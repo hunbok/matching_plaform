@@ -57,16 +57,18 @@ public class BoardService {
         boardMapper.deleteBoard(boardNo);
     }
     
-    public Map<String, Integer> getEmpathy(int boardNo) {
-        return boardMapper.getEmpathy(boardNo);
-    }
-
-    public Map<String, Integer> updateEmpathy(int boardNo, String empathy) {
-        boardMapper.updateEmpathy(empathy, boardNo);
-        return boardMapper.getEmpathy(boardNo);
+    public Map<String, Integer> empathy(int boardNo, String empathy){
+    		boardMapper.updateEmpathy(empathy, boardNo);
+    		Board board = boardMapper.getEmpathy(boardNo);
+    	
+		Map<String, Integer> map = new HashMap<String, Integer>();
+    	map.put("boardLike",board.getBoardLike());
+    	map.put("boardDisLike", board.getBoardDisLike());
+    	
+    	return map;
     }
     
-    public List<Reply> getReplies(int boardNo) {
+    public List<Reply> replyList(int boardNo) {
         return boardMapper.replyList(boardNo);
     }
 

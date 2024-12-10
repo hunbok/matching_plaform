@@ -27,7 +27,7 @@ public interface BoardMapper {
     // reply
     void updateEmpathy(@Param("empathy") String empathy, @Param("boardNo") int boardNo);
 
-    Map<String, Integer> getEmpathy(int boardNo);
+    Board getEmpathy(int boardNo);
     
     List<Reply> replyList(int boardNo);
     
