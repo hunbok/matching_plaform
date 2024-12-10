@@ -25,11 +25,15 @@ public class BoardController {
 
 	 @GetMapping({ "/", "/homePage" })
 	    public String boardbyCategory(Model model,
-	                                  @RequestParam(value = "categoryCode", defaultValue = "1") int categoryCode) {
-	        List<Board> boardbyCategory = boardService.boardbyCategory(categoryCode);
+          @RequestParam(value = "categoryCode", defaultValue = "1") int categoryCode,
+          @RequestParam(value= "type", required=false, defaultValue="null")String type,
+          @RequestParam(value= "keyword", required=false, defaultValue="null")String keyword) {
+	     
+		 Map<String, Object> modelMap = boardService.boardbyCategory(categoryCode, type, keyword);
+		 
 	        Board board = boardService.getDetail(categoryCode);
 	       
-	        model.addAttribute("bList", boardbyCategory);
+	        model.addAllAttributes(modelMap);
 	        model.addAttribute("board", board);
 	        return "views/homePage";
 	    }

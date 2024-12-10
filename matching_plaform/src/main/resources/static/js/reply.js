@@ -5,20 +5,17 @@ $(".btnCommend").click(function() {
 	$.ajax({
 		url: "/updateEmpathy.ajax", 
 		type: "post",
-		data: {
-			empathy: com,
-			boardNo: boardNo
-		},
+		data: {	empathy: com, boardNo: $("#boardNo").val()},
 		dataType: "json",
 		success: function(data) {
 			var msg = com === 'replyLike' ? "추천이" : "비추천이";
 			alert(msg + " 반영되었습니다.");
 
-			$("#replyLikeCount").text(data.replyLike);
-			$("#replyDislikeCount").text(data.replyDislike);
+			$("#replyLike > .recommend").text("(" + data.replyLike + ")");
+			$("#replydisLike > .recommend").text("("+ data.replyDislike +")");
 		},
 		error: function(xhr, status, error) {
-			alert("Error: " + error);
+			alert("Error: "+ xhr.statusText + ", " + error);
 		}
 	});
 });

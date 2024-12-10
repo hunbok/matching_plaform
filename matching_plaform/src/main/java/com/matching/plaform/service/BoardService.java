@@ -1,5 +1,6 @@
 package com.matching.plaform.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,8 +20,24 @@ public class BoardService {
     @Autowired
     private BoardMapper boardMapper;
 
-    public List<Board> boardbyCategory(int categoryCode) {
-        return boardMapper.boardbyCategory(categoryCode);
+    public Map<String, Object> boardbyCategory(int categoryCode, String type, String keyword) {
+        boolean searchOption = (type.equals("null") || keyword.equals("null")) ? false : true;
+        
+        int listCount = boardMapper.getBoardView(type, keyword);
+        
+        List<Board> boardList = boardMapper.boardbyCategory(keyword, type,categoryCode);
+        
+        Map<String, Object> modelMap = new HashMap<String, Object>();
+        
+        modelMap.put("bList", boardList);
+        modelMap.put("listCount", listCount);
+        modelMap.put("searchOption", searchOption);
+        
+        if(searchOption) {
+        	modelMap.put("type", type);
+        	modelMap.put("keyword", keyword);
+        }  
+    	return modelMap;
     }
 
     public Board getDetail(int boardNo) {

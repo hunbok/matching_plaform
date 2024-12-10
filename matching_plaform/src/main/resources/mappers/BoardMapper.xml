@@ -5,7 +5,7 @@
 <mapper namespace="com.matching.plaform.mapper.BoardMapper">
 
     <!-- 카테고리와 게시글을 함께 가져오는 쿼리 -->
-    <select id="boardbyCategory" resultType="Board">
+    <select id="boardbyCategory" parameterType="map" resultType="Board">
         SELECT
             b.board_no,
             b.board_title,
@@ -19,7 +19,35 @@
         FROM board b
         JOIN category c ON b.category_code = c.category_code
         WHERE b.category_code = #{categoryCode}
+       <where>
+       	<if test="type == 'board_title'">
+       		title Like CONCAT('%', #{keyword}, '%')
+       	</if>
+       	<if test="type == 'member_id'">
+       		member_id Like CONCAT('%', #{keyword}, '%')
+       	</if>
+       	<if test="type == 'board_content'">
+       		content Like CONCAT('%', #{keyword}, '%')
+       	</if>
+       </where> 
         ORDER BY b.board_no DESC
+    </select>
+    
+    <select id="getBoardView" parameterType="map" resultType="int">
+    	SELECT
+    		COUNT(board_no)
+    	FROM board
+    	<where>
+       	<if test="type == 'board_title'">
+       		title Like CONCAT('%', #{keyword}, '%')
+       	</if>
+       	<if test="type == 'member_id'">
+       		member_id Like CONCAT('%', #{keyword}, '%')
+       	</if>
+       	<if test="type == 'board_content'">
+       		content Like CONCAT('%', #{keyword}, '%')
+       	</if>
+       </where> 
     </select>
 
     <update id="updateBoard" parameterType="Board">
@@ -74,22 +102,27 @@
     </delete>
 
     <!-- Reply -->
+
     
-    <select id="getEmpathy" resultType="map">
+    <select id="getEmpathy" resultType="Board">
     SELECT 
         board_like AS replyLike,
         board_dislike AS replyDislike
     FROM board
     WHERE board_no = #{boardNo}
 	</select>
-<<<<<<< HEAD
 	
-	<insert id="getBoard" ="Board">
-		
-	</insert>
-	
-	
-=======
+	<update id ="updateEmpathy">
+		UPDATE board
+			SET
+			<if test = "empathy == replyLike">
+			empathy = replyLike + 1
+			</if>
+			<if test = "empathy == replyDisLike">
+			empathy = replyDisLike + 1
+			</if>
+	WHERE board_no = #{boardNo}
+	</update>
     
     <select id="replyList" resultType="Reply">
         SELECT 
@@ -117,5 +150,5 @@
         DELETE FROM reply
         WHERE reply_no = #{replyNo}
     </delete>
->>>>>>> branch 'main' of https://github.com/hunbok/matching_plaform.git
+
 </mapper>

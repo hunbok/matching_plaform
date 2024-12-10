@@ -74,16 +74,16 @@
 
 			<div class="row my-5">
 				<div class="col border p-3">
-					<div id="recommend" class="text-end">
-						<span id="replyLike_${board.boardNo}" class="btnReply text-secondary"
+					<div id="empathy" class="text-end">
+						<span id="replyLike" class="btnReply text-secondary"
 							style="cursor: pointer;" data-board-no="${board.boardNo}">
 							<i class="bi bi-emoji-laughing-fill"></i>&nbsp;좋아요 <span
 							class="recommend" th:text="${board.boardLike}"></span>
-						</span> | <span id="replyDisLike_${board.boardNo}" class="btnReply text-secondary"
+						</span> | <span id="replyDisLike" class="btnReply text-secondary"
 							style="cursor: pointer;" data-board-no="${board.boardNo}">
 							<i class="bi bi-emoji-angry-fill"></i>&nbsp;싫어요 <span
 							class="recommend" th:text="${board.boardDisLike}"></span>
-						</span> | <span id="replyCtn_${board.boardNo}" class="btnReply text-secondary"
+						</span> | <span id="replyCtn" class="btnReply text-secondary"
 							style="cursor: pointer;" data-board-no="${board.boardNo}">
 							<i class="bi bi-chat-right-dots-fill"></i>&nbsp;댓글쓰기
 						</span>

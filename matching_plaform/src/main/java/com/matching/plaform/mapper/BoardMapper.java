@@ -12,7 +12,9 @@ import com.matching.plaform.domain.Reply;
 @Mapper
 public interface BoardMapper {
 
-    List<Board> boardbyCategory(int categoryCode);
+    List<Board> boardbyCategory(@Param("keyword")String keyword,@Param("type")String type ,@Param("categoryCode")int categoryCode);
+    
+    int getBoardView(@Param("type")String type, @Param("keyword")String keyword);
 
     Board getDetail(int boardNo);
 
@@ -22,6 +24,7 @@ public interface BoardMapper {
 
     void deleteBoard(int boardNo);
 
+    // reply
     void updateEmpathy(@Param("empathy") String empathy, @Param("boardNo") int boardNo);
 
     Map<String, Integer> getEmpathy(int boardNo);
