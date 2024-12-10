@@ -25,19 +25,16 @@ public interface BoardMapper {
     void deleteBoard(int boardNo);
 
     // reply
-    void updateEmpathy(@Param("empathy") String empathy, @Param("boardNo") int boardNo);
+    void updateEmpathy( @Param("boardNo") int boardNo, @Param("empathy") String empathy);
 
     Board getEmpathy(int boardNo);
     
     List<Reply> replyList(int boardNo);
     
-    void saveReply(@Param("replyContent") String replyContent, 
-            @Param("boardNo") int boardNo, 
-            @Param("memberId") String memberId);
+    void saveReply(Reply reply);
     
-    void modifyReply(@Param("replyNo") int replyNo, 
-            @Param("replyContent") String replyContent);
-    
+    void updateReply(Reply reply);
+
     void deleteReply(int replyNo);
 }
 

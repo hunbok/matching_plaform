@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,28 +22,28 @@ public class ReplyAjaxController {
     @PostMapping("/empathy.ajax")
     public Map<String, Integer> empathy(@RequestParam("boardNo") int boardNo, 
                                               @RequestParam("empathy") String empathy) {
-        return boardService.empathy(boardNo, empathy);
+        return boardService.empathy(boardNo,empathy);
     }
 
     @PostMapping("/replyWrite.ajax")
-    public List<Reply> replyWrite(@RequestParam String replyContent, 
-                                  @RequestParam int boardNo, 
-                                  @RequestParam String memberId) {
-        boardService.saveReply(replyContent, boardNo, memberId);
-        return boardService.replyList(boardNo);
+    public List<Reply> replyWrite(Reply reply) {
+        boardService.saveReply(reply);
+        return boardService.replyList(reply.getBoardNo());
+    }
+    
+    @PatchMapping("/replyUpdate.ajax")
+    public List<Reply> updateReply(Reply reply) {
+    	
+    boardService.updateReply(reply);
+
+    return boardService.replyList(reply.getBoardNo());
     }
 
-    @PostMapping("/modifyReply.ajax")
-    public List<Reply> modifyReply(@RequestParam int replyNo, 
-                                   @RequestParam String replyContent) {
-        boardService.modifyReply(replyNo, replyContent);
-        return boardService.replyList(replyNo);
-    }
-
-    @PostMapping("/deleteReply.ajax")
-    public List<Reply> deleteReply(@RequestParam int replyNo) {
+    @DeleteMapping("/replyDelete.ajax")
+    public List<Reply> deleteReply(@RequestParam ("replyNo")int replyNo,
+    		@RequestParam("boardNo")int boardNo) {
         boardService.deleteReply(replyNo);
-        return boardService.replyList(replyNo);
+        return boardService.replyList(boardNo);
     }
 }
 

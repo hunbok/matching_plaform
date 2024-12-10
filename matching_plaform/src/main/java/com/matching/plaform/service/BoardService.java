@@ -58,7 +58,7 @@ public class BoardService {
     }
     
     public Map<String, Integer> empathy(int boardNo, String empathy){
-    		boardMapper.updateEmpathy(empathy, boardNo);
+    		boardMapper.updateEmpathy(boardNo, empathy);
     		Board board = boardMapper.getEmpathy(boardNo);
     	
 		Map<String, Integer> map = new HashMap<String, Integer>();
@@ -72,12 +72,11 @@ public class BoardService {
         return boardMapper.replyList(boardNo);
     }
 
-    public void saveReply(String replyContent, int boardNo, String memberId) {
-        boardMapper.saveReply(replyContent, boardNo, memberId);
+    public void saveReply(Reply reply) {
+    	boardMapper.saveReply(reply);
     }
-
-    public void modifyReply(int replyNo, String replyContent) {
-        boardMapper.modifyReply(replyNo, replyContent);
+    public void updateReply(Reply reply) {
+    	boardMapper.updateReply(reply);
     }
 
     public void deleteReply(int replyNo) {

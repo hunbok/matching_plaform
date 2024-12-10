@@ -136,16 +136,18 @@
 		ORDER BY reply_no DESC
     </select>
 
-    <insert id="saveReply" parameterType="map">
+    <insert id="saveReply" parameterType="Reply">
         INSERT INTO reply (reply_content, board_no, member_id, reply_reg_date)
         VALUES (#{replyContent}, #{boardNo}, #{memberId}, NOW())
     </insert>
-
-    <update id="modifyReply" parameterType="map">
-        UPDATE reply
-        SET reply_content = #{replyContent}
-        WHERE reply_no = #{replyNo}
-    </update>
+	
+	<update id="updateReply" parameterType="Reply">
+		UPDATE reply
+			SET reply_content = #{replyContent},
+				reply_reg_date = NOW()
+		WHERE reply_no = #{replyNo} 
+			
+	</update>
 
     <delete id="deleteReply">
         DELETE FROM reply
