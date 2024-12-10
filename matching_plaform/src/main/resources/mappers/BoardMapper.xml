@@ -11,4 +11,10 @@
 		WHERE b.category_code =#{categoryCode}
 		ORDER BY board_no DESC
 	</select>
+	
+	<insert id="getBoard" ="Board">
+		
+	</insert>
+	
+	
 </mapper>
