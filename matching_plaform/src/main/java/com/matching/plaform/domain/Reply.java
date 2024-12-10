@@ -13,11 +13,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Reply {
 	
-	private int reply_no;
-	private int board_no;
-	private String reply_content;
-	private String member_id;
-	private Timestamp reg_date;
-	private int reply_like;
-	private int reply_dislike;
+	private int replyNo;
+	private int boardNo;
+	private String replyContent;
+	private String memberId;
+	private Timestamp regDate;
+	private int replyLike;
+	private int replyDislike;
 }

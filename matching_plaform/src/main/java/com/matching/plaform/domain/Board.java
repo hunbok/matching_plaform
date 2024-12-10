@@ -16,13 +16,13 @@ public class Board {
 	private int boardNo;
 	private String boardTitle;
 	private String boardContent;
-	private Timestamp regDate;
+	private Timestamp boardRegDate;
 	private int boardView;
 	private int categoryCode;
 	private String categoryName;
 	private String memberId;
 	private String boardFile1;
 	private int boardLike;
-	private int boardDislike;
+	private int boardDisLike;
 	
 }

@@ -6,18 +6,24 @@
 <th:block layout:fragment="content">
 	<div class="row my-5" id="global-content">
 		<div class="col-10 offset-1">
-			<div>
-				<h1>게시판</h1>
-
-				<!-- 카테고리 탭 -->
-
+			<div class="row">
+				<div class="col-4"><h1>게시판</h1></div>
+				<div class="col d-flex justify-content-end">
+				<a th:href="@{writeBoard(categoryCode=${board.categoryCode})}" class="btn btn-outline-secondary d-flex align-items-center">글 쓰기</a>
+				</div>
 				<nav>
 					<div class="nav nav-tabs" id="nav-tab" role="tablist">
 						<button class="nav-link text-dark" id="nav-All-tab" data-bs-toggle="tab"
 							data-bs-target="#nav-All" type="button" role="tab"
 							aria-controls="nav-All" aria-selected="true"
+<<<<<<< HEAD
 							th:classappend="${categoryCode == 3 ? ' active' : ''}"
 							onclick="location.href='/homePage?categoryCode=3'">전체	레시피</button>
+=======
+							th:classappend="${categoryCode == 1 ? ' active' : ''}"
+							onclick="location.href='/homePage?categoryCode=1'">전체
+							레시피</button>
+>>>>>>> branch 'main' of https://github.com/hunbok/matching_plaform.git
 
 						<button class="nav-link text-dark" id="nav-Popular-tab" data-bs-toggle="tab"
 							data-bs-target="#nav-Popular" type="button" role="tab"
@@ -28,22 +34,22 @@
 						<button class="nav-link text-dark" id="nav-tip-tab" data-bs-toggle="tab"
 							data-bs-target="#nav-tip" type="button" role="tab"
 							aria-controls="nav-tip" aria-selected="false"
-							th:classappend="${categoryCode == 4 ? ' active' : ''}"
-							onclick="location.href='/homePage?categoryCode=4'">꿀 팁</button>
+							th:classappend="${categoryCode == 3 ? ' active' : ''}"
+							onclick="location.href='/homePage?categoryCode=3'">꿀 팁</button>
 
 						<button class="nav-link text-dark" id="nav-notice-tab" data-bs-toggle="tab"
 							data-bs-target="#nav-notice" type="button" role="tab"
 							aria-controls="nav-notice" aria-selected="false"
-							th:classappend="${categoryCode == 1 ? ' active' : ''}"
-							onclick="location.href='/homePage?categoryCode=1'">공지 사항</button>
+							th:classappend="${categoryCode == 4 ? ' active' : ''}"
+							onclick="location.href='/homePage?categoryCode=4'">공지 사항</button>
 					</div>
 				</nav>
 
 
 				<div class="tab-content" id="nav-tabContent">
 					<div class="tab-pane fade show active" id="nav-home"
-						role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-						<table class="table table-striped mt-3">
+						role="tabpanel" aria-labelledby="nav-home-tab" >
+						<table class="table mt-3">
 							<thead>
 								<tr>
 									<th>번호</th>
@@ -56,9 +62,9 @@
 							<tbody>
 								<tr th:each="board : ${bList}">
 									<td th:text="${board.boardNo}"></td>
-									<td th:text="${board.boardTitle}"></td>
+									<td><a class="text-decoration-none text-dark" th:href="@{detailView(boardNo=${board.boardNo})}">[[${board.boardTitle}]]</a></td>
 									<td th:text="${board.memberId}"></td>
-									<td th:text="${#dates.format(board.regDate, 'yyyy-MM-dd')}"></td>
+									<td th:text="${#dates.format(board.boardRegDate, 'yyyy-MM-dd')}"></td>
 									<td th:text="${board.boardView}"></td>
 								</tr>
 								<!-- 게시글이 없을 경우 -->
@@ -67,19 +73,6 @@
 								</tr>
 							</tbody>
 						</table>
-					</div>
-
-
-					<!-- <ul class="nav nav-tabs" id="nav-tab" role="tablist">
-					<li th:each="category : ${cList}">
-					<span th:text="${category.categoryName}">Category Name</span>
-					</li>
-				</ul> -->
-
-					<!-- 게시글 리스트 -->
-					<div class="tab-content" id="nav-tabContent">
-						<div class="tab-pane fade show active" id="nav-home"
-							role="tabpanel" aria-labelledby="nav-home-tab"></div>
 					</div>
 				</div>
 			</div>

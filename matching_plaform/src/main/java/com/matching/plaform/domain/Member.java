@@ -21,8 +21,8 @@ public class Member {
 	private String zipcode;
 	private String address1;
 	private String address2;
-	private String email_get;
-	private Timestamp reg_date;
+	private String emailGet;
+	private Timestamp regDate;
 	private String nickname;
 	
 	

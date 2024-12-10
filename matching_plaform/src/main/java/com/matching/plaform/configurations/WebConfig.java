@@ -9,8 +9,10 @@ public class WebConfig implements WebMvcConfigurer{
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		
-		
+		registry.addViewController("/writeForm").setViewName("views/writeForm");
+		registry.addViewController("/writeBoard").setViewName("views/writeForm");
+		registry.addViewController("/loginView").setViewName("members/loginView");
+		registry.addViewController("/joinView").setViewName("members/JoinView");
 	}
 
 }

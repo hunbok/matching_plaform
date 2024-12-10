@@ -1,30 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-	
-	<div th:fragment="header" class="row">
-		<div class = "col-4">
-			<a href="#">coo KINGx2</a>
-		</div>
-		
-		<div class="col-8">
-			<div class = "row">
-				<div class="col">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="header" class="row border-bottom border-secondary">
+	<div class="col-5">
+	</div>
+	<div class="col-7">
+		<div class="row">
+			<div class="col">
 				<ul class="nav justify-content-end">
 					<li class="nav-item">
-						<a class="nav-link" href="#">로그인</a>
+					<th:block th:unless="${session.isLogin}">
+						<a class="nav-link text-dark" th:href="@{loginView}">로그인</a> 
+						</th:block> 
+						<th:block th:if="${session.isLogin}">
+							<a class="nav-link text-dark" th:href="@{memberLogout}">로그아웃</a>
+						</th:block>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">회원가입</a>
+					<li class="nav-item"><a class="nav-link text-dark" href="homePage">게시
+							글 리스트</a></li>
+					<li class="nav-item"><th:block th:unless="${session.isLogin}">
+							<a class="nav-link text-dark" href="joinView">회원가입</a>
+						</th:block> <th:block th:if="${session.isLogin}">
+							<a class="nav-link text-dark" href="memberUpdateForm">정보수정</a>
+						</th:block></li>
+					<li class="nav-item"><a class="nav-link text-dark" href="#">주문/배송조회</a>
 					</li>
-					<li class="nav-item">
-						<i class="bi bi-search"></i>
-					</li>
+					<li class="nav-item"><a class="nav-link text-dark" href="#">고객센터</a></li>
 				</ul>
-				</div>
 			</div>
-			<div class="row">
-				<div class="col text-end">로그인시 인사말 출력</div>
+		</div>
+		<div class="row">
+			<div class="col text-end pe-5 text-warning-emphasis">
+				<div th:if="${session.isLogin}">안녕하세요 [[ ${session.member != null} ? ${session.member.id} : '비회원']] 님</div>
 			</div>
 		</div>
 	</div>
+</div>
 </html>

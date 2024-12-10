@@ -2,6 +2,7 @@
 SHOW DATABASES;
 
 SHOW tables;
+CREATE DATABASE category;
 
 USE category;
 USE member;
@@ -15,6 +16,9 @@ category_code INTEGER AUTO_INCREMENT PRIMARY KEY,
 category_name VARCHAR(10) NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO category(category_name) VALUES ('전체 게시글');
+INSERT INTO category(category_name) VALUES ('인기 레시피');
+INSERT INTO category(category_name) VALUES ('꿀팁 게시글');
 INSERT INTO category(category_name) VALUES ('공지사항');
 
 -- 회원
@@ -58,7 +62,13 @@ CONSTRAINT category_code_fk FOREIGN KEY (category_code) REFERENCES category(cate
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO board(board_title, board_content, board_reg_date, board_view, category_code, member_id, board_file1)
-VALUES('공지 사항 입니다.', '안녕하세요\r\n이번에 어쩌구 저쩌구 해서리...\r\n\r\n\r\r\n\n이렇게 운영계획과 약관을 바꾸게 되었습니다.\r\n\r\n회원님들의 양해를 구하며 사이트 이용해 참고 하시기 바랍니다.\r\n\r\n','2022-12-22 11:44:58', 102, 1, 'bokbok', null);
+VALUES('공지 사항 입니다.', '안녕하세요\r\n이번에 어쩌구 저쩌구 해서리...\r\n\r\n\r\r\n\n이렇게 운영계획과 약관을 바꾸게 되었습니다.\r\n\r\n회원님들의 양해를 구하며 사이트 이용해 참고 하시기 바랍니다.\r\n\r\n','2022-12-22 11:44:58', 102, 4, 'bokbok', null);
+INSERT INTO board(board_title, board_content, board_reg_date, board_view, category_code, member_id, board_file1)
+VALUES('인기 레시피 입니다.', '안녕하세요\r\n이번에 어쩌구 저쩌구 해서리...\r\n\r\n\r\r\n\n이렇게 운영계획과 약관을 바꾸게 되었습니다.\r\n\r\n회원님들의 양해를 구하며 사이트 이용해 참고 하시기 바랍니다.\r\n\r\n','2022-12-22 11:44:58', 102, 2, 'bokbok', null);
+INSERT INTO board(board_title, board_content, board_reg_date, board_view, category_code, member_id, board_file1)
+VALUES('전체 레시피 입니다.', '안녕하세요\r\n이번에 어쩌구 저쩌구 해서리...\r\n\r\n\r\r\n\n이렇게 운영계획과 약관을 바꾸게 되었습니다.\r\n\r\n회원님들의 양해를 구하며 사이트 이용해 참고 하시기 바랍니다.\r\n\r\n','2022-12-22 11:44:58', 102, 1, 'bokbok', null);
+INSERT INTO board(board_title, board_content, board_reg_date, board_view, category_code, member_id, board_file1)
+VALUES('꿀팁 게시판 입니다.', '안녕하세요\r\n이번에 어쩌구 저쩌구 해서리...\r\n\r\n\r\r\n\n이렇게 운영계획과 약관을 바꾸게 되었습니다.\r\n\r\n회원님들의 양해를 구하며 사이트 이용해 참고 하시기 바랍니다.\r\n\r\n','2022-12-22 11:44:58', 102, 3, 'bokbok', null);
 
 -- 댓글
 DROP TABLE IF EXISTS reply;
@@ -77,5 +87,9 @@ CREATE TABLE IF NOT EXISTS reply(
 INSERT INTO reply(board_no, reply_content, member_id, reply_reg_date) 
 VALUES(1, '고생하십니다.', 'midas', '2022-12-23 11:44:58');
 
+SELECT * FROM member;
+SELECT * FROM reply;
 SELECT * FROM category ORDER BY category_code DESC;
 SELECT * FROM board ORDER BY board_no DESC;
+
+
