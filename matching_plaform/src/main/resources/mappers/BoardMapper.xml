@@ -4,7 +4,6 @@
 	
 <mapper namespace="com.matching.plaform.mapper.BoardMapper">
 
-    <!-- 카테고리와 게시글을 함께 가져오는 쿼리 -->
     <select id="boardbyCategory" parameterType="map" resultType="Board">
         SELECT
             b.board_no,
@@ -18,19 +17,19 @@
             c.category_name
         FROM board b
         JOIN category c ON b.category_code = c.category_code
-        WHERE b.category_code = #{categoryCode}
        <where>
-       	<if test="type == 'board_title'">
-       		title Like CONCAT('%', #{keyword}, '%')
-       	</if>
-       	<if test="type == 'member_id'">
-       		member_id Like CONCAT('%', #{keyword}, '%')
-       	</if>
-       	<if test="type == 'board_content'">
-       		content Like CONCAT('%', #{keyword}, '%')
-       	</if>
+       		b.category_code = #{categoryCode}
+	       	<if test="type == 'boardTitle'">
+	       		AND board_title Like CONCAT('%', #{keyword}, '%')
+	       	</if>
+	       	<if test="type == 'memberId'">
+	       		AND member_id Like CONCAT('%', #{keyword}, '%')
+	       	</if>
+	       	<if test="type == 'boardContent'">
+	       		AND board_content Like CONCAT('%', #{keyword}, '%')
+	       	</if>
        </where> 
-        ORDER BY b.board_no DESC
+        ORDER BY board_no DESC
     </select>
     
     <select id="getBoardView" parameterType="map" resultType="int">
@@ -38,14 +37,14 @@
     		COUNT(board_no)
     	FROM board
     	<where>
-       	<if test="type == 'board_title'">
-       		title Like CONCAT('%', #{keyword}, '%')
+       	<if test="type == 'boardTitle'">
+       		AND board_title Like CONCAT('%', #{keyword}, '%')
        	</if>
-       	<if test="type == 'member_id'">
-       		member_id Like CONCAT('%', #{keyword}, '%')
+       	<if test="type == 'memberId'">
+       		AND member_id Like CONCAT('%', #{keyword}, '%')
        	</if>
-       	<if test="type == 'board_content'">
-       		content Like CONCAT('%', #{keyword}, '%')
+       	<if test="type == 'boardContent'">
+       		AND	board_content Like CONCAT('%', #{keyword}, '%')
        	</if>
        </where> 
     </select>

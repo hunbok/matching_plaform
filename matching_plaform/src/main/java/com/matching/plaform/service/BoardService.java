@@ -21,12 +21,12 @@ public class BoardService {
     private BoardMapper boardMapper;
 
     public Map<String, Object> boardbyCategory(int categoryCode, String type, String keyword) {
-        boolean searchOption = (type.equals("null") || keyword.equals("null")) ? false : true;
-        
+    	boolean searchOption = (type.equals("null") || keyword.equals("null")) ? false : true;
+ 
         int listCount = boardMapper.getBoardView(type, keyword);
         
-        List<Board> boardList = boardMapper.boardbyCategory(keyword, type,categoryCode);
-        
+        List<Board> boardList = boardMapper.boardbyCategory(categoryCode, type , keyword);
+       
         Map<String, Object> modelMap = new HashMap<String, Object>();
         
         modelMap.put("bList", boardList);

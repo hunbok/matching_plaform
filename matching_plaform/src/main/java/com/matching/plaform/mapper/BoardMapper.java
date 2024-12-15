@@ -12,7 +12,7 @@ import com.matching.plaform.domain.Reply;
 @Mapper
 public interface BoardMapper {
 
-    List<Board> boardbyCategory(@Param("keyword")String keyword,@Param("type")String type ,@Param("categoryCode")int categoryCode);
+    List<Board> boardbyCategory(@Param("categoryCode")int categoryCode,@Param("type")String type,@Param("keyword")String keyword);
     
     int getBoardView(@Param("type")String type, @Param("keyword")String keyword);
 

@@ -1,66 +1,88 @@
 @CHARSET "UTF-8";
+
 /* 로그인 폼 */
-#loginForm h2, #loginForm p, 
-#loginForm input, #loginForm label { 
-	margin: 0px;
-	padding: 0px;
-	font-family: "맑은 고딕",돋움;
-	font-size: 12px;
-}		
 #loginForm h2 {
-	font-size: 40px;
-	letter-spacing: -1px;
-	color: #C8C8C8;
-	text-align: center;
+    font-size: 32px;
+    color: #333;
+    letter-spacing: -1px;
+    margin-bottom: 30px;
 }
-#loginForm legend {
-	display: none;
-}
+
 #loginForm fieldset {
-	width: 430px;
-	margin: 10px auto;
-	border: 5px solid #efefef;
-	padding: 50px;
-	border-radius: 15px;
+    border: none;
+    padding: 30px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
-#loginForm #login {
-	float: left;
+
+#loginForm .labelStyle {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+    display: block;
 }
-#loginForm label.labelStyle {
-	width: 60px;
-	display: block;
-	float: left;
-	font-weight: bold;	
+
+#loginForm .form-control {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
 }
-#loginForm #userId, #loginForm #userPass {
-	width: 150px;
-	border: 1px solid #999;
-	margin-bottom: 5px;
-	padding: 2px;
+
+#loginForm .form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
 }
+
 #loginForm #btnLogin {
-	display: block;
-	background-color: #F63;
-	border-radius: 5px;
-	border-style: none;
-	color: #fff;
-	width: 80px;
-	height: 57px;
-	position: relative;
-	float: left;
-	left: 10px;
-	font-size: 13px;
-	font-weight: bold;
-	cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-#loginForm #searchBtn {
-	clear: both;	
+
+#loginForm #btnLogin:hover {
+    background-color: #0056b3;
 }
-#searchBtn > p {
-	position: relative;
-	top: 20px;
-	text-align: center;
+
+#searchBtn p {
+    font-size: 14px;
+    color: #777;
 }
-#searchBtn > p > span {
-	padding: 15px 10px;
+
+#searchBtn p span {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#searchBtn p span:hover {
+    color: #0056b3;
+}
+
+/* 모바일 반응형 */
+@media screen and (max-width: 576px) {
+    #loginForm h2 {
+        font-size: 28px;
+    }
+
+    #loginForm .form-control {
+        font-size: 16px;
+    }
+
+    #loginForm #btnLogin {
+        font-size: 14px;
+        padding: 10px;
+    }
 }

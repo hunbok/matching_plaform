@@ -41,19 +41,20 @@ public class MemberController {
 			out.println(" history.back();");
 			out.println("</script>");
 			return null;
-		} else if(revalue == 1) {
+		} else if(revalue == 2) {
 			rs.setContentType("text/html; charset=utf-8");
 			PrintWriter out = rs.getWriter();
 			out.println("<script>");
 			out.println(" alert('비밀번호가 다릅니다.');");
-			out.println(" location.href='loginForm'");
+			out.println(" location.href='loginView'");
 			out.println("</script>");
 			return null;		
 		}
 		Member member = memberService.getMember(id);
-		session.setAttribute("isLogin", true);
-		
-		model.addAttribute("member", member);
+
+		 model.addAttribute("member", member);
+	    session.setAttribute("isLogin", true); 
+	    model.addAttribute("isLogin", true);
 		System.out.println("member.name : " + member.getName());
 		
 		return "redirect:/homePage";

@@ -7,16 +7,18 @@
 <div class="row my-5" id="global-content">
 	<div class="col-10 offset-1">
 		<div class="row">
-			<div class="col-4"><h1>게시판</h1></div>
+			<div class="col-12 d-flex justify-content-center"><h1>게시판</h1></div>
 			<div class="col d-flex justify-content-end">
 			<a th:href="@{writeBoard(categoryCode=${board.categoryCode})}" class="btn btn-outline-secondary d-flex align-items-center">글 쓰기</a>
 			</div>
-			
+		</div>
 		<form name="searchForm" id="searchForm" action="homePage"
 			class ="row justify-content-center my-3">
+			<input type="hidden" name="categoryCode" th:value="${board.categoryCode}"/>
+
 			<div class = "col-auto">
 					<select name = "type" class="form-select">
-						<option value="title">제목</option>
+						<option value="boardTitle">제목</option>
 						<option value="memberId">작성자</option>
 						<option value="boardContent">내용</option>
 					</select>
@@ -28,86 +30,26 @@
 				<input type="submit" value="검색" class="btn btn-primary"/>
 			</div>
 		</form>
+
 		<th:block th:if="${searchOption}">
 			<div class="row my-3">
 				<div class="col text-center">
 					"[[${keyword}]]" 검색결과
 				</div>
 			</div>
-			<div class="row my-3">
-				<div class="col-6">
-					<a th:href="@{homePage}" class="btn btn-outline-success">리스트</a>
-				</div>
-				<div class="col-6 text-end">
-					<a th:href="@{writeBoard}" class="btn btn-outline-success">글쓰기</a>
-				</div>
-			</div>
-			<div class="row my-3">
-				<div class="col">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>NO</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>조회수</th>
-							</tr>
-						</thead>
-						<tbody>
-							<th:block th:if="${searchOption and not #lists.isEmpty(bList)}">
-								<tr th:bolck th:each="board, status: ${bList}">
-									<td>[[${board.boardNo}]]</td>
-									<td><a th:href="@{detailView(boardNo=${board.boardNo})"
-									class="text-dark text-decoration-none">[[${board.boardTitle}]]</a></td>
-									<td th:text="${board.memberId}"></td>
-									<td>[[${#dates.format(board.boardRegDate,'yyyy-MM-dd')}]]</td>
-									<td th:text="${board.boardView}"></td>
-								</tr>
-							</th:block>
-							<!-- 검색된 리스트가 없을때 -->
-							<th:block th:if="${searchOpton and #lists.isEmpty(bList)}">
-								<tr>
-									<td colspan="5">"[[${keyword}]]" 검색 결과 없음</td>
-								</tr>
-							</th:block>
-							<th:block th:if="${not searchOption and not #lists.isEmpty(bList)}">
-								<tr th:block th:each="board, status: ${bList}">
-									<td>[[${board.boardNo}]]</td>
-									<td><a th:href="@{detailView(boardNo=${board.boardNo})"
-									class="text-decoration-none text-dark">[[${board.boardTitle}]]</a></td>
-									<td th:text="${board.memberId}"></td>
-									<td>[[${dates.format(board.boardRegDate, 'yyyy-MM-dd')}]]</td>
-									<td th:text="${board.boardView}"></td>
-								</tr>
-							</th:block>
-							<th:block th:if="${not searchOption and #lists.isEmpty(bList)}">
-								<tr>
-									<td colspan="5">게시글이 존재하지 않음</td>
-								</tr>
-							</th:block>
-						</tbody>
-					</table>
-				</div>
-			</div>
 		</th:block>
-				
-				
-				
-			
 			<nav>
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
 					<button class="nav-link text-dark" id="nav-All-tab" data-bs-toggle="tab"
 						data-bs-target="#nav-All" type="button" role="tab"
 						aria-controls="nav-All" aria-selected="true"
 						th:classappend="${categoryCode == 1 ? ' active' : ''}"
-						onclick="location.href='/homePage?categoryCode=1'">전체
-						레시피</button>
+						onclick="location.href='/homePage?categoryCode=1'">자취생 레시피</button>
 					<button class="nav-link text-dark" id="nav-Popular-tab" data-bs-toggle="tab"
 						data-bs-target="#nav-Popular" type="button" role="tab"
 						aria-controls="nav-Popular" aria-selected="false"
 						th:classappend="${categoryCode == 2 ? ' active' : ''}"
-						onclick="location.href='/homePage?categoryCode=2'">인기 레시피</button>
+						onclick="location.href='/homePage?categoryCode=2'">건강 레시피</button>
 
 					<button class="nav-link text-dark" id="nav-tip-tab" data-bs-toggle="tab"
 						data-bs-target="#nav-tip" type="button" role="tab"
@@ -122,8 +64,6 @@
 						onclick="location.href='/homePage?categoryCode=4'">공지 사항</button>
 				</div>
 			</nav>
-
-
 			<div class="tab-content" id="nav-tabContent">
 				<div class="tab-pane fade show active" id="nav-home"
 					role="tabpanel" aria-labelledby="nav-home-tab" >
@@ -138,24 +78,42 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="board : ${bList}">
+						<th:block th:if="${searchOption and not #lists.isEmpty(bList)}">
+							<tr th:block th:each="board, status : ${bList}">
 								<td th:text="${board.boardNo}"></td>
-								<td><a class="text-decoration-none text-dark" th:href="@{detailView(boardNo=${board.boardNo})}">[[${board.boardTitle}]]</a></td>
+								<td><a class="text-decoration-none text-dark" 
+								th:href="@{detailView(boardNo=${board.boardNo},type=${type}, keyword=${keyword})}">[[${board.boardTitle}]]</a></td>
 								<td th:text="${board.memberId}"></td>
-								<td th:text="${#dates.format(board.boardRegDate, 'yyyy-MM-dd')}"></td>
+								<td>[[${ #dates.format(board.boardRegDate, 'yyyy-MM-dd') }]]</td>
 								<td th:text="${board.boardView}"></td>
 							</tr>
+							</th:block>
 							<!-- 게시글이 없을 경우 -->
-								<tr th:if="${#lists.isEmpty(bList)}">
-									<td colspan="5">게시글이 없습니다.</td>
+							<th:block th:if="${searchOption and #lists.isEmpty(bList)}">
+								<tr>
+									<td colspan="5">"[[${keyword}]]" 검색 결과 없음.</td>
 								</tr>
+							</th:block>
+							<th:block th:if="${not searchOption and not #lists.isEmpty(bList)}">
+								<tr th:block th:each="board, status: ${bList}">
+									<td>[[ ${board.boardNo} ]]</td>
+									<td><a class="text-decoration-none text-dark" 
+									th:href="@{detailView(boardNo=${board.boardNo})}">[[${board.boardTitle}]]</a></td>
+									<td th:text="${board.memberId}"></td>
+									<td>[[${#dates.format(board.boardRegDate,'yyyy-MM-dd')}]]</td>
+									<td th:text="${ board.boardView }"></td>
+								</tr>										
+							</th:block>
+							<th:block th:if="${not searchOption and #lists.isEmpty(bList)}">
+								<tr>
+									<td colspan="5">게시글이 존재하지 않음</td>											
+								</tr>
+							</th:block>	
 							</tbody>
 						</table>
 					</div>
 				</div>
-				
-				
-			</div>
+			
 		</div>
 	</div>
 </th:block>

@@ -3,35 +3,35 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/main_layout}">
 <!-- content -->
-<div layout:fragment="content" class="row my-5" id="global-content">
+<div layout:fragment="content" class="row justify-content-center my-5" id="global-content">
 	<th:block>
 		<link th:href="@{css/member.css}" rel="stylesheet" />
 	</th:block>
-	<div class="col">
+	<div class="col-12 col-md-6 col-lg-4">
 		<form class="my-5" id="loginForm" action="login" method="post">
-			<h2 class="fw-bold">Member Login</h2>
+			<h2 class="fw-bold text-center mb-4">로그인</h2>
 			<fieldset>
-				<legend>Member Loin</legend>
-				<div id="login">
-					<p>
-						<label for="memberId" class="labelStyle">아이디</label> <input
-							type="text" id="memberId" name="memberId" />
-					</p>
-					<p>
-						<label for="memberPass" class="labelStyle">비밀번호</label> <input
-							type="password" id="memberPass" name="memberPass" />
-					</p>
+				<div class="mb-4">
+					<label for="memberId" class="labelStyle">아이디</label>
+					<input type="text" id="memberId" name="memberId" class="form-control" placeholder="아이디를 입력하세요" required />
 				</div>
-				<input type="submit" value="로그인" id="btnLogin" />
-				<div id="searchBtn">
-					<p>
-						<span>비밀번호 찾기</span> | <span>아이디 찾기</span> | <span>회원가입 </span>
-					</p>
-				</div> 
+				<div class="mb-4">
+					<label for="memberPass" class="labelStyle">비밀번호</label>
+					<input type="password" id="memberPass" name="memberPass" class="form-control" placeholder="비밀번호를 입력하세요" required />
+				</div>
+				<button type="submit" id="btnLogin" class="btn btn-primary w-100">로그인</button>
 			</fieldset>
+			<div id="searchBtn" class="text-center mt-4">
+				<p>
+					<span class="text-muted">비밀번호 찾기</span> | 
+					<span class="text-muted">아이디 찾기</span> | 
+					<span class="text-muted">회원가입</span>
+				</p>
+			</div>
+			<th:block th:unless="${#strings.isEmpty(session.loginMsg)}">
+				<h5 class="fw-bold text-center text-primary mt-3" th:text="${session.loginMsg}"></h5>
+			</th:block>
 		</form>
 	</div>
-	<th:block>
-</th:block>
 </div>
 </html>
