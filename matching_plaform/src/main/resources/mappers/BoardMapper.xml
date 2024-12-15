@@ -101,12 +101,11 @@
         WHERE board_no = #{boardNo}
     </delete>
 
-    <!-- Reply -->
 
-    
+    <!-- Reply -->
     <select id="getEmpathy" resultType="Board">
     SELECT 
-        board_like
+        board_like,
         board_dislike
     FROM board
     WHERE board_no = #{boardNo}
@@ -114,14 +113,14 @@
 	
 	<update id ="updateEmpathy">
 		UPDATE board
-			SET
-			<if test = "empathy == replyLike">
-			empathy = replyLike + 1
+		SET
+			<if test="boardLike == 'good'">
+			board_like=board_like + 1
 			</if>
-			<if test = "empathy == replyDisLike">
-			empathy = replyDisLike + 1
+			<if test="boardLike == 'boardDislike'">
+			board_dislike=board_dislike + 1
 			</if>
-	WHERE board_no = #{boardNo}
+		WHERE board_no = #{boardNo}
 	</update>
     
     <select id="replyList" resultType="Reply">

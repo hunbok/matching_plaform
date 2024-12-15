@@ -66,17 +66,17 @@
 
 			<div class="row my-5">
 				<div class="col border p-3">
-					<div id="empathy" class="text-end">
-						<span id="replyLike" class="btnReply text-secondary"
+					<div id="boardLike" class="text-end">
+						<span id="good" class="btnReply text-secondary"
 							style="cursor: pointer;">
-							<i class="bi bi-emoji-laughing-fill"></i>&nbsp;좋아요 <span
-							class="empathy" th:text="|(${board.boardLike})|"></span>
+							<i class="bi bi-emoji-laughing-fill"></i>&nbsp;좋아요
+							<span class="boardLike" th:text="|(${board.boardLike})|"></span>
 						</span> | 
 						
-						<span id="replyDisLike" class="btnReply text-secondary"
+						<span id="boardDislike" class="btnReply text-secondary"
 							style="cursor: pointer;">
-							<i class="bi bi-emoji-angry-fill"></i>&nbsp;싫어요 <span
-							class="empathy" th:text="|(${board.boardDisLike})|"></span>
+							<i class="bi bi-emoji-angry-fill"></i>&nbsp;싫어요 
+							<span class="boardLike" th:text="|(${board.boardDislike})|"></span>
 						</span> | 
 						
 						<span id="replyWrite" class="text-secondary" style="cursor: pointer;">
@@ -98,10 +98,9 @@
 							<div class="row bg-light p-2">
 								<div class="col-4">
 									<span th:text="${reply.memberId}">댓글 작성자</span>
-
 								</div>
 								<div class="col-8 text-end">
-									<span class="me-3">[[${ #dates.format(reply.regDate, 'yyyy-MM-dd HH:mm:ss') }]]</span>
+									<span class="me-3">[[${ #dates.format(reply.replyRegDate, 'yyyy-MM-dd HH:mm:ss') }]]</span>
 									<button class="modifyReply btn btn-outline-success btn-sm"
 										id="modifyReply" th:data-no="${reply.replyNo}">
 										<i class="bi bi-journal-text">수정</i>
@@ -125,7 +124,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div th:unless="${not #lists.isEmpty(rList)}" class="row mb-3">
 				<div class="col" id="rList">
 					<div class="replyRow row border border-top-0">
@@ -133,8 +131,6 @@
 					</div>
 				</div>
 			</div>
-
-			<!-- 댓글 쓰기 폼 -->
 			<div class="row my-3 d-none" id="replyForm">
 				<div class="col">
 					<form name="replyWriteForm" id="replyWriteForm">
@@ -162,7 +158,6 @@
 					</form>
 				</div>
 			</div>
-			<!-- end 댓글 쓰기 폼 -->
 		</div>
 	</div>
 </th:block>

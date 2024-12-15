@@ -23,6 +23,6 @@ public class Board {
 	private String memberId;
 	private String boardFile1;
 	private int boardLike;
-	private int boardDisLike;
+	private int boardDislike;
 	
 }

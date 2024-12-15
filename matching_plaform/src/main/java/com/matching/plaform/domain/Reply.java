@@ -17,7 +17,7 @@ public class Reply {
 	private int boardNo;
 	private String replyContent;
 	private String memberId;
-	private Timestamp regDate;
+	private Timestamp replyRegDate;
 	private int replyLike;
 	private int replyDislike;
 }

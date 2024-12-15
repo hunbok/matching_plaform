@@ -43,9 +43,9 @@ public class BoardController {
 	    public String getDetail(Model model, @RequestParam("boardNo") int boardNo) {
 	        Board board = boardService.getDetail(boardNo);
 	        
-	        model.addAttribute("board", board);
-	        
 	        List<Reply> replyList = boardService.replyList(boardNo);
+	        
+	        model.addAttribute("board", board);	        
 	        model.addAttribute("rList", replyList);
 	        return "views/detailView";
 	    }

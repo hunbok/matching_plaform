@@ -25,7 +25,7 @@ public interface BoardMapper {
     void deleteBoard(int boardNo);
 
     // reply
-    void updateEmpathy( @Param("boardNo") int boardNo, @Param("empathy") String empathy);
+    void updateEmpathy(@Param("boardNo") int boardNo, @Param("boardLike") String boardLike);
 
     Board getEmpathy(int boardNo);
     

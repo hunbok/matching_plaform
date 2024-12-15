@@ -19,10 +19,14 @@ public class ReplyAjaxController {
     @Autowired
     private BoardService boardService;
 
-    @PostMapping("/empathy.ajax")
-    public Map<String, Integer> empathy(@RequestParam("boardNo") int boardNo, 
-                                              @RequestParam("empathy") String empathy) {
-        return boardService.empathy(boardNo,empathy);
+    @PostMapping("/boardLike.ajax")
+    public Map<String, Integer> boardLike(@RequestParam("boardNo") int boardNo, 
+                                      @RequestParam("boardLike")String boardLike) {
+    
+        System.out.println("boardNo: " + boardNo); 
+        System.out.println("boardLike: " + boardLike);
+
+        return boardService.boardLike(boardNo, boardLike);
     }
 
     @PostMapping("/replyWrite.ajax")
